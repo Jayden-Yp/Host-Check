@@ -1,5 +1,5 @@
 #!/bin/bash
-#主机信息每日巡检
+#主机信息每周巡检
 IPADDR=$(ifconfig eth0|grep 'inet addr'|awk -F '[ :]' '{print $13}')
 #环境变量PATH没设好，在cron里执行时有很多命令会找不到
 export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
@@ -583,7 +583,7 @@ function getNTPStatus(){
     #报表信息
     report_NTP="$(getState ntpd)"
 }
-function uploadHostDailyCheckReport(){
+function uploadHostWeekCheckReport(){
     json="{
         \"DateTime\":\"$report_DateTime\",
         \"Hostname\":\"$report_Hostname\",
@@ -631,7 +631,7 @@ function uploadHostDailyCheckReport(){
         \"JDK\":\"$report_JDK\"
     }"
     #echo "$json" 
-    curl -l -H "Content-type: application/json" -X POST -d "$json" "$uploadHostDailyCheckReportApi" 2>/dev/null
+    curl -l -H "Content-type: application/json" -X POST -d "$json" "$uploadHostWeekCheckReportApi" 2>/dev/null
 }
 function check(){
     version
