@@ -1,4 +1,5 @@
 #!/bin/bash
+#此脚本是对巡检脚本进行加密
 
 decrypt(){
     LINE=$(awk '/^_DATA_/ {print NR + 1}' "$0")
