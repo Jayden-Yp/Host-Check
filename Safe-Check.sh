@@ -6,7 +6,7 @@ decrypt(){
     local tmpdir=$(mktemp -d)
     tail -n +"$LINE" $0 | base64 -d | tar xzm -C ${tmpdir}
     cd ${tmpdir}
-    bash Host Check.sh
+    bash Host-Check.sh
     rm -rf ${tmpdir}
     exit 0
 }
